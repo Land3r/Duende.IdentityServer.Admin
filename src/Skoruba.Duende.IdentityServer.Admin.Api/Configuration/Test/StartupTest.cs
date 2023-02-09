@@ -22,14 +22,14 @@ namespace Skoruba.Duende.IdentityServer.Admin.Api.Configuration.Test
 
         public override void RegisterDbContexts(IServiceCollection services)
         {
-            services.RegisterDbContextsStaging<AdminIdentityDbContext, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext, IdentityServerDataProtectionDbContext>();
+            services.RegisterDbContextsStaging<AdminIdentityDbContext<string>, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext, IdentityServerDataProtectionDbContext>();
         }
 
         public override void RegisterAuthentication(IServiceCollection services)
         {
             services
-                .AddIdentity<UserIdentity, UserIdentityRole>(options => Configuration.GetSection(nameof(IdentityOptions)).Bind(options))
-                .AddEntityFrameworkStores<AdminIdentityDbContext>()
+                .AddIdentity<UserIdentity<string>, UserIdentityRole<string>>(options => Configuration.GetSection(nameof(IdentityOptions)).Bind(options))
+                .AddEntityFrameworkStores<AdminIdentityDbContext<string>>()
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication(options =>

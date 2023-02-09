@@ -67,26 +67,27 @@ namespace Skoruba.Duende.IdentityServer.Admin.Api
 
             var profileTypes = new HashSet<Type>
             {
-                typeof(IdentityMapperProfile<IdentityRoleDto, IdentityUserRolesDto, string, IdentityUserClaimsDto, IdentityUserClaimDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto, IdentityRoleClaimDto, IdentityRoleClaimsDto>)
+                typeof(IdentityMapperProfile<IdentityRoleDto<string>, IdentityUserRolesDto<string>, string, IdentityUserClaimsDto<string>, IdentityUserClaimDto<string>, IdentityUserProviderDto<string>, IdentityUserProvidersDto<string>, IdentityUserChangePasswordDto<string>, IdentityRoleClaimDto<string>, IdentityRoleClaimsDto<string>>)
             };
 
-            services.AddAdminAspNetIdentityServices<AdminIdentityDbContext, IdentityServerPersistedGrantDbContext,
-                IdentityUserDto, IdentityRoleDto, UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-                UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
-                IdentityUsersDto, IdentityRolesDto, IdentityUserRolesDto,
-                IdentityUserClaimsDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto,
-                IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>(profileTypes);
+            services.AddAdminAspNetIdentityServices<AdminIdentityDbContext<string>, IdentityServerPersistedGrantDbContext,
+                IdentityUserDto<string>, IdentityRoleDto<string>, UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+                UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
+                IdentityUsersDto<string>, IdentityRolesDto<string>, IdentityUserRolesDto<string>,
+                IdentityUserClaimsDto<string>, IdentityUserProviderDto<string>, IdentityUserProvidersDto<string>, IdentityUserChangePasswordDto<string>,
+                IdentityRoleClaimsDto<string>, IdentityUserClaimDto<string>, IdentityRoleClaimDto<string>>(profileTypes);
+
 
             services.AddAdminServices<IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext>();
 
             services.AddAdminApiCors(adminApiConfiguration);
 
-            services.AddMvcServices<IdentityUserDto, IdentityRoleDto,
-                UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-                UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
-                IdentityUsersDto, IdentityRolesDto, IdentityUserRolesDto,
-                IdentityUserClaimsDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto,
-                IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>();
+            services.AddMvcServices<IdentityUserDto<string>, IdentityRoleDto<string>,
+                UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+                UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
+                IdentityUsersDto<string>, IdentityRolesDto<string>, IdentityUserRolesDto<string>,
+                IdentityUserClaimsDto<string>, IdentityUserProviderDto<string>, IdentityUserProvidersDto<string>, IdentityUserChangePasswordDto<string>,
+                IdentityRoleClaimsDto<string>, IdentityUserClaimDto<string>, IdentityRoleClaimDto<string>>();
 
             services.AddSwaggerGen(options =>
             {
@@ -112,7 +113,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.Api
 
             services.AddAuditEventLogging<AdminAuditLogDbContext, AuditLog>(Configuration);
 
-            services.AddIdSHealthChecks<IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminIdentityDbContext, AdminLogDbContext, AdminAuditLogDbContext, IdentityServerDataProtectionDbContext>(Configuration, adminApiConfiguration);
+            services.AddIdSHealthChecks<IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminIdentityDbContext<string>, AdminLogDbContext, AdminAuditLogDbContext, IdentityServerDataProtectionDbContext>(Configuration, adminApiConfiguration);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AdminApiConfiguration adminApiConfiguration)
@@ -151,12 +152,12 @@ namespace Skoruba.Duende.IdentityServer.Admin.Api
 
         public virtual void RegisterDbContexts(IServiceCollection services)
         {
-            services.AddDbContexts<AdminIdentityDbContext, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext, IdentityServerDataProtectionDbContext, AuditLog>(Configuration);
+            services.AddDbContexts<AdminIdentityDbContext<string>, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext, IdentityServerDataProtectionDbContext, AuditLog>(Configuration);
         }
 
         public virtual void RegisterAuthentication(IServiceCollection services)
         {
-            services.AddApiAuthentication<AdminIdentityDbContext, UserIdentity, UserIdentityRole>(Configuration);
+            services.AddApiAuthentication<AdminIdentityDbContext<string>, UserIdentity<string>, UserIdentityRole<string>>(Configuration);
         }
 
         public virtual void RegisterAuthorization(IServiceCollection services)

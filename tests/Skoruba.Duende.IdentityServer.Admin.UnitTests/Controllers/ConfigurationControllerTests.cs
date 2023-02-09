@@ -811,9 +811,9 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
 
             services.AddAdminServices<IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext>();
 
-            services.AddAdminAspNetIdentityServices<AdminIdentityDbContext, IdentityServerPersistedGrantDbContext, UserDto<string>, RoleDto<string>,
-                UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-                UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
+            services.AddAdminAspNetIdentityServices<AdminIdentityDbContext<string>, IdentityServerPersistedGrantDbContext, UserDto<string>, RoleDto<string>,
+                UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+                UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
                 UsersDto<UserDto<string>, string>, RolesDto<RoleDto<string>, string>, UserRolesDto<RoleDto<string>, string>,
                 UserClaimsDto<UserClaimDto<string>, string>, UserProviderDto<string>, UserProvidersDto<UserProviderDto<string>, string>, UserChangePasswordDto<string>,
                 RoleClaimsDto<RoleClaimDto<string>, string>, UserClaimDto<string>, RoleClaimDto<string>>();

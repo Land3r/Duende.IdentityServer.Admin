@@ -9,7 +9,7 @@ using Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.DbContexts;
 
 namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.SqlServer.Migrations.Identity
 {
-    [DbContext(typeof(AdminIdentityDbContext))]
+    [DbContext(typeof(AdminIdentityDbContext<string>))]
     [Migration("20191119163918_DbInit")]
     partial class DbInit
     {

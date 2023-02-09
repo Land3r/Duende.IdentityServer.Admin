@@ -9,7 +9,7 @@ using Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.DbContexts;
 
 namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.PostgreSQL.Migrations.Identity
 {
-    [DbContext(typeof(AdminIdentityDbContext))]
+    [DbContext(typeof(AdminIdentityDbContext<string>))]
     [Migration("20191120100035_DbInit")]
     partial class DbInit
     {

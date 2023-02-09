@@ -27,12 +27,12 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Services
         {
             var identityDatabaseName = Guid.NewGuid().ToString();
 
-            _identityDbContextOptions = new DbContextOptionsBuilder<AdminIdentityDbContext>()
+            _identityDbContextOptions = new DbContextOptionsBuilder<AdminIdentityDbContext<string>>()
                 .UseInMemoryDatabase(identityDatabaseName)
                 .Options;
         }
 
-        private readonly DbContextOptions<AdminIdentityDbContext> _identityDbContextOptions;
+        private readonly DbContextOptions<AdminIdentityDbContext<string>> _identityDbContextOptions;
 
         private IdentityServerPersistedGrantDbContext GetDbContext()
         {
@@ -49,9 +49,9 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Services
             return context;
         }
 
-        private IPersistedGrantAspNetIdentityRepository GetPersistedGrantRepository(AdminIdentityDbContext identityDbContext, IdentityServerPersistedGrantDbContext context)
+        private IPersistedGrantAspNetIdentityRepository GetPersistedGrantRepository(AdminIdentityDbContext<string> identityDbContext, IdentityServerPersistedGrantDbContext context)
         {
-            var persistedGrantRepository = new PersistedGrantAspNetIdentityRepository<AdminIdentityDbContext, IdentityServerPersistedGrantDbContext, UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole, UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken>(identityDbContext, context);
+            var persistedGrantRepository = new PersistedGrantAspNetIdentityRepository<AdminIdentityDbContext<string>, IdentityServerPersistedGrantDbContext, UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>, UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>>(identityDbContext, context);
 
             return persistedGrantRepository;
         }
@@ -70,7 +70,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Services
         {
             using (var context = GetDbContext())
             {
-                using (var identityDbContext = new AdminIdentityDbContext(_identityDbContextOptions))
+                using (var identityDbContext = new AdminIdentityDbContext<string>(_identityDbContextOptions))
                 {
                     var persistedGrantRepository = GetPersistedGrantRepository(identityDbContext, context);
 
@@ -104,7 +104,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Services
         {
             using (var context = GetDbContext())
             {
-                using (var identityDbContext = new AdminIdentityDbContext(_identityDbContextOptions))
+                using (var identityDbContext = new AdminIdentityDbContext<string>(_identityDbContextOptions))
                 {
                     var persistedGrantRepository = GetPersistedGrantRepository(identityDbContext, context);
 
@@ -140,7 +140,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Services
         {
             using (var context = GetDbContext())
             {
-                using (var identityDbContext = new AdminIdentityDbContext(_identityDbContextOptions))
+                using (var identityDbContext = new AdminIdentityDbContext<string>(_identityDbContextOptions))
                 {
                     var persistedGrantRepository = GetPersistedGrantRepository(identityDbContext, context);
 

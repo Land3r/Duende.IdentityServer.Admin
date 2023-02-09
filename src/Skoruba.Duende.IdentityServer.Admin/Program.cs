@@ -78,9 +78,9 @@ namespace Skoruba.Duende.IdentityServer.Admin
                 .Get<DatabaseMigrationsConfiguration>();
 
             return await DbMigrationHelpers
-                .ApplyDbMigrationsWithDataSeedAsync<IdentityServerConfigurationDbContext, AdminIdentityDbContext,
+                .ApplyDbMigrationsWithDataSeedAsync<IdentityServerConfigurationDbContext, AdminIdentityDbContext<string>,
                     IdentityServerPersistedGrantDbContext, AdminLogDbContext, AdminAuditLogDbContext,
-                    IdentityServerDataProtectionDbContext, UserIdentity, UserIdentityRole>(host,
+                    IdentityServerDataProtectionDbContext, UserIdentity<string>, UserIdentityRole<string>, string>(host,
                     applyDbMigrationWithDataSeedFromProgramArguments, seedConfiguration, databaseMigrationsConfiguration);
         }
 

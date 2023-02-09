@@ -7,7 +7,7 @@ using Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.DbContexts;
 
 namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.MySql.Migrations.Identity
 {
-    [DbContext(typeof(AdminIdentityDbContext))]
+    [DbContext(typeof(AdminIdentityDbContext<string>))]
     partial class AdminIdentityDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

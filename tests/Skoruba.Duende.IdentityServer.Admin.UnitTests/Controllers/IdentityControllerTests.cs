@@ -41,15 +41,15 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
     public class IdentityControllerTests
     {
         private IIdentityService<UserDto<string>, RoleDto<string>,
-            UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-            UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
+            UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+            UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
             UsersDto<UserDto<string>, string>, RolesDto<RoleDto<string>, string>, UserRolesDto<RoleDto<string>, string>,
             UserClaimsDto<UserClaimDto<string>, string>, UserProviderDto<string>, UserProvidersDto<UserProviderDto<string>, string>, UserChangePasswordDto<string>,
             RoleClaimsDto<RoleClaimDto<string>, string>, UserClaimDto<string>, RoleClaimDto<string>> GetIdentityService(IServiceProvider services)
         {
             return services.GetRequiredService<IIdentityService<UserDto<string>, RoleDto<string>,
-                UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-                UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
+                UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+                UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
                 UsersDto<UserDto<string>, string>, RolesDto<RoleDto<string>, string>, UserRolesDto<RoleDto<string>, string>,
                 UserClaimsDto<UserClaimDto<string>, string>, UserProviderDto<string>, UserProvidersDto<UserProviderDto<string>, string>, UserChangePasswordDto<string>,
                 RoleClaimsDto<RoleClaimDto<string>, string>, UserClaimDto<string>, RoleClaimDto<string>>>();
@@ -61,7 +61,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -86,7 +86,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -128,7 +128,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -157,7 +157,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -190,7 +190,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -215,7 +215,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -243,7 +243,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -270,7 +270,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -298,7 +298,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -328,7 +328,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -366,7 +366,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -403,7 +403,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -435,7 +435,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -466,7 +466,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -498,7 +498,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -526,7 +526,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         {
             //Get Services
             var serviceProvider = GetServices();
-            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext>();
+            var dbContext = serviceProvider.GetRequiredService<AdminIdentityDbContext<string>>();
             var identityService = GetIdentityService(serviceProvider);
 
             // Get controller
@@ -555,16 +555,16 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
         }
 
         private IdentityController<UserDto<string>, RoleDto<string>,
-            UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-            UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
+            UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+            UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
             UsersDto<UserDto<string>, string>, RolesDto<RoleDto<string>, string>, UserRolesDto<RoleDto<string>, string>,
             UserClaimsDto<UserClaimDto<string>, string>, UserProviderDto<string>, UserProvidersDto<UserProviderDto<string>, string>, UserChangePasswordDto<string>,
             RoleClaimsDto<RoleClaimDto<string>, string>, UserClaimDto<string>, RoleClaimDto<string>> PrepareIdentityController(IServiceProvider serviceProvider)
         {
             // Arrange
             var localizer = serviceProvider.GetRequiredService<IGenericControllerLocalizer<IdentityController<UserDto<string>, RoleDto<string>,
-                UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-                UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
+                UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+                UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
                 UsersDto<UserDto<string>, string>, RolesDto<RoleDto<string>, string>, UserRolesDto<RoleDto<string>, string>,
                 UserClaimsDto<UserClaimDto<string>, string>, UserProviderDto<string>, UserProvidersDto<UserProviderDto<string>,string>, UserChangePasswordDto<string>,
                 RoleClaimsDto<RoleClaimDto<string>, string>, UserClaimDto<string>, RoleClaimDto<string>>>>();
@@ -574,8 +574,8 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
 
             //Get Controller
             var controller = new IdentityController<UserDto<string>, RoleDto<string>,
-                UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-                UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
+                UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+                UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
                 UsersDto<UserDto<string>, string>, RolesDto<RoleDto<string>, string>, UserRolesDto<RoleDto<string>, string>,
                 UserClaimsDto<UserClaimDto<string>, string>, UserProviderDto<string>, UserProvidersDto<UserProviderDto<string>, string>, UserChangePasswordDto<string>,
                 RoleClaimsDto<RoleClaimDto<string>, string>, UserClaimDto<string>, RoleClaimDto<string>>(identityService, logger, localizer);
@@ -596,7 +596,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
 
             //Entity framework
             services.AddOptions();
-            services.AddDbContext<AdminIdentityDbContext>(b => b.UseInMemoryDatabase(Guid.NewGuid().ToString()));
+            services.AddDbContext<AdminIdentityDbContext<string>>(b => b.UseInMemoryDatabase(Guid.NewGuid().ToString()));
             services.AddDbContext<AdminAuditLogDbContext>(b => b.UseInMemoryDatabase(Guid.NewGuid().ToString()));
 
             //Http Context
@@ -619,15 +619,15 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Controllers
 
             services.AddAdminServices<IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext, AdminLogDbContext>();
 
-            services.AddAdminAspNetIdentityServices<AdminIdentityDbContext, IdentityServerPersistedGrantDbContext, UserDto<string>, RoleDto<string>,
-                UserIdentity, UserIdentityRole, string, UserIdentityUserClaim, UserIdentityUserRole,
-                UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken,
+            services.AddAdminAspNetIdentityServices<AdminIdentityDbContext<string>, IdentityServerPersistedGrantDbContext, UserDto<string>, RoleDto<string>,
+                UserIdentity<string>, UserIdentityRole<string>, string, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+                UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>,
                 UsersDto<UserDto<string>, string>, RolesDto<RoleDto<string>, string>, UserRolesDto<RoleDto<string>, string>,
                 UserClaimsDto<UserClaimDto<string>, string>, UserProviderDto<string>, UserProvidersDto<UserProviderDto<string>, string>, UserChangePasswordDto<string>,
                 RoleClaimsDto<RoleClaimDto<string>, string>, UserClaimDto<string>, RoleClaimDto<string>>();
 
-            services.AddIdentity<UserIdentity, UserIdentityRole>()
-                .AddEntityFrameworkStores<AdminIdentityDbContext>()
+            services.AddIdentity<UserIdentity<string>, UserIdentityRole<string>>()
+                .AddEntityFrameworkStores<AdminIdentityDbContext<string>>()
                 .AddDefaultTokenProviders();
 
             services.AddSession();

@@ -8,7 +8,7 @@ using Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.DbContexts;
 
 namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.MySql.Migrations.Identity
 {
-    [DbContext(typeof(AdminIdentityDbContext))]
+    [DbContext(typeof(AdminIdentityDbContext<string>))]
     [Migration("20191120085611_DbInit")]
     partial class DbInit
     {

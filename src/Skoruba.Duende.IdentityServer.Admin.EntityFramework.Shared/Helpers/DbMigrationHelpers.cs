@@ -30,7 +30,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.Helpers
         /// <param name="seedConfiguration"></param>
         /// <param name="databaseMigrationsConfiguration"></param>
         public static async Task<bool> ApplyDbMigrationsWithDataSeedAsync<TIdentityServerDbContext, TIdentityDbContext,
-            TPersistedGrantDbContext, TLogDbContext, TAuditLogDbContext, TDataProtectionDbContext, TUser, TRole>(
+            TPersistedGrantDbContext, TLogDbContext, TAuditLogDbContext, TDataProtectionDbContext, TUser, TRole, TKey>(
             IHost host, bool applyDbMigrationWithDataSeedFromProgramArguments, SeedConfiguration seedConfiguration,
             DatabaseMigrationsConfiguration databaseMigrationsConfiguration)
             where TIdentityServerDbContext : DbContext, IAdminConfigurationDbContext
@@ -39,8 +39,9 @@ namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.Helpers
             where TLogDbContext : DbContext, IAdminLogDbContext
             where TAuditLogDbContext : DbContext, IAuditLoggingDbContext<AuditLog>
             where TDataProtectionDbContext : DbContext, IDataProtectionKeyContext
-            where TUser : IdentityUser, new()
-            where TRole : IdentityRole, new()
+            where TUser : IdentityUser<TKey>, new()
+            where TRole : IdentityRole<TKey>, new()
+            where TKey : IEquatable<TKey>
         {
             var migrationComplete = false;
 
@@ -57,7 +58,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.Helpers
                 if ((seedConfiguration != null && seedConfiguration.ApplySeed)
                     || (applyDbMigrationWithDataSeedFromProgramArguments))
                 {
-                    var seedComplete = await EnsureSeedDataAsync<TIdentityServerDbContext, TUser, TRole>(services);
+                    var seedComplete = await EnsureSeedDataAsync<TIdentityServerDbContext, TUser, TRole, TKey>(services);
                     
                     return migrationComplete && seedComplete;
                 }
@@ -118,10 +119,11 @@ namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.Helpers
             return pendingMigrationCount == 0;
         }
 
-        public static async Task<bool> EnsureSeedDataAsync<TIdentityServerDbContext, TUser, TRole>(IServiceProvider serviceProvider)
+        public static async Task<bool> EnsureSeedDataAsync<TIdentityServerDbContext, TUser, TRole, TKey>(IServiceProvider serviceProvider)
         where TIdentityServerDbContext : DbContext, IAdminConfigurationDbContext
-        where TUser : IdentityUser, new()
-        where TRole : IdentityRole, new()
+        where TUser : IdentityUser<TKey>, new()
+        where TRole : IdentityRole<TKey>, new()
+        where TKey : IEquatable<TKey>
         {
             using (var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
@@ -132,7 +134,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.Helpers
                 var idDataConfiguration = scope.ServiceProvider.GetRequiredService<IdentityData>();
 
                 await EnsureSeedIdentityServerData(context, idsDataConfiguration);
-                await EnsureSeedIdentityData(userManager, roleManager, idDataConfiguration);
+                await EnsureSeedIdentityData<TUser, TRole, TKey>(userManager, roleManager, idDataConfiguration);
             }
 
             return true;
@@ -141,10 +143,11 @@ namespace Skoruba.Duende.IdentityServer.Admin.EntityFramework.Shared.Helpers
         /// <summary>
         /// Generate default admin user / role
         /// </summary>
-        private static async Task EnsureSeedIdentityData<TUser, TRole>(UserManager<TUser> userManager,
+        private static async Task EnsureSeedIdentityData<TUser, TRole, TKey>(UserManager<TUser> userManager,
             RoleManager<TRole> roleManager, IdentityData identityDataConfiguration)
-            where TUser : IdentityUser, new()
-            where TRole : IdentityRole, new()
+            where TUser : IdentityUser<TKey>, new()
+            where TRole : IdentityRole<TKey>, new()
+            where TKey : IEquatable<TKey>
         {
             // adding roles from seed
             foreach (var r in identityDataConfiguration.Roles)

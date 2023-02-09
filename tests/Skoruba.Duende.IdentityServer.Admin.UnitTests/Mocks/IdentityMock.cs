@@ -15,9 +15,9 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Mocks
 {
     public static class IdentityMock
     {
-        public static Faker<UserIdentityUserLogin> GetUserProvidersFaker(string key, string loginProvider, string userId)
+        public static Faker<UserIdentityUserLogin<string>> GetUserProvidersFaker(string key, string loginProvider, string userId)
         {
-            var userProvidersFaker = new Faker<UserIdentityUserLogin>()
+            var userProvidersFaker = new Faker<UserIdentityUserLogin<string>>()
                 .RuleFor(o => o.LoginProvider, f => loginProvider)
                 .RuleFor(o => o.ProviderKey, f => key)
                 .RuleFor(o => o.ProviderDisplayName, f => Guid.NewGuid().ToString())
@@ -26,7 +26,7 @@ namespace Skoruba.Duende.IdentityServer.Admin.UnitTests.Mocks
             return userProvidersFaker;
         }
 
-        public static UserIdentityUserLogin GenerateRandomUserProviders(string key, string loginProvider, string userId)
+        public static UserIdentityUserLogin<string> GenerateRandomUserProviders(string key, string loginProvider, string userId)
         {
             var provider = GetUserProvidersFaker(key, loginProvider, userId).Generate();
 

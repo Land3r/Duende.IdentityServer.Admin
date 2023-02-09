@@ -37,13 +37,13 @@ namespace Skoruba.Duende.IdentityServer.Admin
         public void ConfigureServices(IServiceCollection services)
         {
             // Adds the Duende IdentityServer Admin UI with custom options.
-            services.AddIdentityServerAdminUI<AdminIdentityDbContext, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext,
+            services.AddIdentityServerAdminUI<AdminIdentityDbContext<string>, IdentityServerConfigurationDbContext, IdentityServerPersistedGrantDbContext,
             AdminLogDbContext, AdminAuditLogDbContext, AuditLog, IdentityServerDataProtectionDbContext,
-                UserIdentity, UserIdentityRole, UserIdentityUserClaim, UserIdentityUserRole,
-                UserIdentityUserLogin, UserIdentityRoleClaim, UserIdentityUserToken, string,
-                IdentityUserDto, IdentityRoleDto, IdentityUsersDto, IdentityRolesDto, IdentityUserRolesDto,
-                IdentityUserClaimsDto, IdentityUserProviderDto, IdentityUserProvidersDto, IdentityUserChangePasswordDto,
-                IdentityRoleClaimsDto, IdentityUserClaimDto, IdentityRoleClaimDto>(ConfigureUIOptions);
+                UserIdentity<string>, UserIdentityRole<string>, UserIdentityUserClaim<string>, UserIdentityUserRole<string>,
+                UserIdentityUserLogin<string>, UserIdentityRoleClaim<string>, UserIdentityUserToken<string>, string,
+                IdentityUserDto<string>, IdentityRoleDto<string>, IdentityUsersDto<string>, IdentityRolesDto<string>, IdentityUserRolesDto<string>,
+                IdentityUserClaimsDto<string>, IdentityUserProviderDto<string>, IdentityUserProvidersDto<string>, IdentityUserChangePasswordDto<string>,
+                IdentityRoleClaimsDto<string>, IdentityUserClaimDto<string>, IdentityRoleClaimDto<string>>(ConfigureUIOptions);
 
             // Monitor changes in Admin UI views
             services.AddAdminUIRazorRuntimeCompilation(HostingEnvironment);
